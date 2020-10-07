@@ -6,7 +6,7 @@ import TvSvg from '../../../public/watching-tv.svg';
 export const siteTitle = 'My Airtime - TV Shows database';
 
 interface LayoutProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 export default function Layout(props: LayoutProps): JSX.Element {
