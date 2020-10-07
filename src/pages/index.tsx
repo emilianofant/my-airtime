@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/layout';
+import ShowCard from '../components/showCard/showCard';
 import { fetchAPI } from '../lib/api';
 import { Show } from '../lib/types';
 
@@ -27,11 +28,13 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <Layout>
-      <h2>Popular TV shows</h2>
-      {loading ? <h2>Loading</h2> : ''}
-      {data.map((item: Show, index) => (
-        <div key={index}>{item.original_name}</div>
-      ))}
+      <h1 className="text-center text-xl md:text-4xl px-6 py-12 bg-white">Popular TV shows</h1>
+      <div className="container max-w-4xl mx-auto pb-10 flex flex-wrap">
+        {loading ? <h2>Loading</h2> : ''}
+        {data.map((item: Show) => (
+          <ShowCard {...item} key={item.id} />
+        ))}
+      </div>
     </Layout>
   );
 };
