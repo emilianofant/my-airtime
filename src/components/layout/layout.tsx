@@ -16,6 +16,11 @@ export default function Layout(props: LayoutProps): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Search over `themoviedb` for your favorite TV shows!" />
         <meta name="og:title" content={siteTitle} />
+        <link
+          rel="shortcut icon"
+          href="https://cdn.iconscout.com/icon/premium/png-256-thumb/television-2437710-2019939.png"
+          type="image/x-icon"
+        ></link>
       </Head>
       <header className="w-full px-6 bg-white">
         <div className="container mx-auto max-w-4xl md:flex justify-between items-center">
