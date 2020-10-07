@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/layout';
 import ShowCard from '../components/showCard/showCard';
