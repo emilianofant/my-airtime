@@ -79,3 +79,10 @@ export interface Episode {
   vote_average: number;
   vote_count: number;
 }
+
+export interface Review {
+  author: string;
+  content: string;
+  id: string;
+  url: string;
+}

@@ -1,9 +1,12 @@
+import Link from 'next/link';
 import { Season, ShowDetails } from '../../lib/types';
 import SeasonsAccordion from '../SeasonsAccordion/SeasonsAccordion';
 import styles from './showDetails.module.css';
 
 // export default function ShowDetailView(showDetailProps: ShowDetails): JSX.Element {
 export const ShowDetailView: React.FC<{ showDetailProps: ShowDetails }> = ({ showDetailProps }) => {
+  const showId = showDetailProps.id;
+
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto">
@@ -17,6 +20,9 @@ export const ShowDetailView: React.FC<{ showDetailProps: ShowDetails }> = ({ sho
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest"></h2>
+            <Link href={`/show/${showId}/reviews`}>
+              <a>Reviews</a>
+            </Link>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
               {showDetailProps.original_name}
             </h1>

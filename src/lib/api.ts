@@ -26,6 +26,12 @@ export async function fetchSearchShows(query: string): Promise<Show[] | null> {
   ).then((res) => res.results);
 }
 
+export async function fetchShowReviews(showId: number): Promise<Season | null> {
+  return makeRequest(`${BASE_URL}/tv/${showId}/reviews?api_key=${API_KEY}`).then(
+    (res) => res.results,
+  );
+}
+
 const makeRequest = async (url) => {
   const res = await fetch(url);
 

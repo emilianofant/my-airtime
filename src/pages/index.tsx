@@ -34,7 +34,7 @@ const IndexPage: React.FC<PageProps> = () => {
         })
         .catch((e) => console.log('Connection error', e));
     }
-  }
+  };
 
   useEffect(() => {
     getPopularShows();
