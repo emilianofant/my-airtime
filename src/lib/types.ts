@@ -14,6 +14,16 @@ export interface Show {
   vote_count: number;
 }
 
+export interface Season {
+  air_date: string;
+  episode_count: number;
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  season_number: number;
+}
+
 export interface ShowDetails {
   backdrop_path: string;
   created_by: any[];
@@ -38,7 +48,7 @@ export interface ShowDetails {
   popularity: number;
   poster_path: string;
   production_companies: any[];
-  seasons: any[];
+  seasons: Season[];
   status: string;
   type: string;
   vote_average: number;

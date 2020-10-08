@@ -52,7 +52,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
           <div className="w-full md:w-1/2 text-center md:text-right"></div>
         </div>
       </nav>
-      <main className="mb-auto h-10">{props.children}</main>
+      <main className="mb-auto">{props.children}</main>
       <footer className="w-full bg-white px-6 border-t">
         <div className="container mx-auto max-w-4xl py-6 flex flex-wrap md:flex-no-wrap justify-between items-center text-sm">
           &copy;2020 My Airtime. All rights reserved.

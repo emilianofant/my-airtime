@@ -2,6 +2,9 @@ import { useRouter } from 'next/router';
 import { fetchShowDetail } from '../../lib/api';
 import { ShowDetails } from '../../lib/types';
 import { useEffect, useState } from 'react';
+import { ShowDetailView } from '../../components/showDetailView/showDetailView';
+import Layout from '../../components/layout/layout';
+import { GetServerSideProps } from 'next';
 
 interface ShowDetailsProps {
   showDetails: ShowDetails;
@@ -13,8 +16,7 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
 
   useEffect(() => {
     setShowData(showDetailsProps.showDetails);
-    console.log(showData);
-  }, []);
+  }, [showDetailsProps.showDetails]);
 
   if (router.isFallback) {
     return <div className="container mx-auto mt-32 text-center">Loading...</div>;
@@ -24,12 +26,16 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
     return <h3>Loading</h3>;
   }
 
-  return <div>Test {showData.id} </div>;
+  return (
+    <Layout>
+      <ShowDetailView showDetailProps={showData} />;
+    </Layout>
+  );
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
-  const showDetails = await fetchShowDetail(Array.isArray(id) ? id[0] : id);
+  const showDetails = await fetchShowDetail(Number(id));
   return {
     props: {
       showDetails,

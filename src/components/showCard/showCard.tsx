@@ -5,7 +5,7 @@ export default function ShowCard(cardProps: Show): JSX.Element {
   const { id } = cardProps;
 
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 mb-4">
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 mb-4 shadow">
       <Link href={`/show/${id}`}>
         <a>
           <img
