@@ -4,7 +4,9 @@ const BASE_URL = 'https://api.themoviedb.org/3/tv';
 const API_KEY = '3504a963b5eddb74923319a7e1dab880';
 
 export async function fetchAPI(): Promise<Show[] | null> {
-  return makeRequest(`${BASE_URL}/popular?api_key=${API_KEY}&language=en-US&page=1`);
+  return makeRequest(`${BASE_URL}/popular?api_key=${API_KEY}&language=en-US&page=1`).then(
+    (res) => res.results,
+  );
 }
 
 export async function fetchShowDetail(showId: number): Promise<ShowDetails | null> {
