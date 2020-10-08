@@ -23,7 +23,7 @@ export default function ReviewsPage(showReviewsProps: ShowReviewsProps): JSX.Ele
 
   return (
     <Layout>
-      <div className="container max-w-4xl mx-auto pb-10 flex-col">
+      <div className="container max-w-4xl mx-auto pb-10 flex-col h-full">
         {reviews.map((r) => (
           <ReviewCard reviewCardProps={r} key={r.id} />
         ))}

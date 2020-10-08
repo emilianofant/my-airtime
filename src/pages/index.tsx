@@ -24,8 +24,7 @@ const IndexPage: React.FC<PageProps> = () => {
   };
 
   const onSearchInputChange = (query: string) => {
-    console.log(query);
-    if (!isLoading && query.length > 3) {
+    if (!isLoading && query.length > 2) {
       setLoading(true);
       fetchSearchShows(query)
         .then((dataJson) => {
