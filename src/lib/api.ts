@@ -1,4 +1,4 @@
-import { Show, ShowDetails, Episode } from '../lib/types';
+import { Show, ShowDetails, Season } from '../lib/types';
 
 const BASE_URL = 'https://api.themoviedb.org/3/tv';
 const API_KEY = '3504a963b5eddb74923319a7e1dab880';
@@ -13,10 +13,10 @@ export async function fetchShowDetail(showId: number): Promise<ShowDetails | nul
   return makeRequest(`${BASE_URL}/${showId}?api_key=${API_KEY}`);
 }
 
-export async function fetchSeasonDetail(
+export async function fetchSeasonDetails(
   seasonNumber: number,
   showId: number,
-): Promise<Episode | null> {
+): Promise<Season | null> {
   return makeRequest(`${BASE_URL}/${showId}/season/${seasonNumber}?api_key=${API_KEY}`);
 }
 

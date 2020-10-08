@@ -1,5 +1,5 @@
 import { Season, ShowDetails } from '../../lib/types';
-import EpisodesAccordion from '../EpisodesAccordion/EpisodesAccordion';
+import SeasonsAccordion from '../SeasonsAccordion/SeasonsAccordion';
 import styles from './showDetails.module.css';
 
 // export default function ShowDetailView(showDetailProps: ShowDetails): JSX.Element {
@@ -50,7 +50,7 @@ export const ShowDetailView: React.FC<{ showDetailProps: ShowDetails }> = ({ sho
             </div>
             <div className="flex flex-col">
               {showDetailProps.seasons.map((s: Season) => (
-                <EpisodesAccordion season={s} showId={showDetailProps.id} key={s.id} />
+                <SeasonsAccordion season={s} showId={showDetailProps.id} key={s.id} />
               ))}
             </div>
           </div>
