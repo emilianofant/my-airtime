@@ -54,3 +54,14 @@ export interface ShowDetails {
   vote_average: number;
   vote_count: number;
 }
+
+export interface Episode {
+  _id: string;
+  air_date: string;
+  episodes: any[];
+  name: string;
+  overview: string;
+  id: number;
+  poster_path: string;
+  season_number: number;
+}

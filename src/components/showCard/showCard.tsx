@@ -16,9 +16,9 @@ export default function ShowCard(cardProps: Show): JSX.Element {
       </Link>
 
       <h2 className="text-xl py-4">
-        <a href="#" className="text-black no-underline">
-          {cardProps.original_name}
-        </a>
+        <Link href={`/show/${id}`}>
+          <a className="text-black no-underline">{cardProps.original_name}</a>
+        </Link>
       </h2>
 
       <p className="text-xs leading-normal"> {cardProps.overview} </p>

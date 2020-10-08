@@ -8,11 +8,13 @@ export const ShowDetailView: React.FC<{ showDetailProps: ShowDetails }> = ({ sho
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          <img
-            alt="ecommerce"
-            className={`lg:w-1/2 w-full object-cover object-center rounded border border-gray-200 ${styles.showImage}`}
-            src={`http://image.tmdb.org/t/p/w300_and_h450_face/${showDetailProps.backdrop_path}`}
-          />
+          <div>
+            <img
+              alt="ecommerce"
+              className={`lg:w-3/4 w-full m-auto object-cover object-center rounded border border-gray-200 ${styles.showImage}`}
+              src={`http://image.tmdb.org/t/p/w300_and_h450_face/${showDetailProps.backdrop_path}`}
+            />
+          </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest"></h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
@@ -48,7 +50,7 @@ export const ShowDetailView: React.FC<{ showDetailProps: ShowDetails }> = ({ sho
             </div>
             <div className="flex flex-col">
               {showDetailProps.seasons.map((s: Season) => (
-                <EpisodesAccordion season={s} key={s.id} />
+                <EpisodesAccordion season={s} showId={showDetailProps.id} key={s.id} />
               ))}
             </div>
           </div>
