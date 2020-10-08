@@ -2,6 +2,8 @@ import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { fetchShowReviews } from '../../../lib/api';
 import { Review } from '../../../lib/types';
+import Layout from '../../../components/layout/layout';
+import { ReviewCard } from '../../../components/ReviewCard/ReviewCard';
 
 interface ShowReviewsProps {
   showReviews: Review[];
@@ -20,11 +22,13 @@ export default function ReviewsPage(showReviewsProps: ShowReviewsProps): JSX.Ele
   }
 
   return (
-    <div>
-      {reviews.map((r) => (
-        <div>{r.author}</div>
-      ))}
-    </div>
+    <Layout>
+      <div className="container max-w-4xl mx-auto pb-10 flex-col">
+        {reviews.map((r) => (
+          <ReviewCard reviewCardProps={r} key={r.id} />
+        ))}
+      </div>
+    </Layout>
   );
 }
 
