@@ -4,7 +4,6 @@ import AccordeonArrow from './AccordionArrow.svg';
 import { fetchSeasonDetails } from '../../lib/api';
 import { EpisodesList } from '../EpisodesList/EpisodesList';
 
-// export default function SeasonsAccordion(seasons: Season[]): JSX.Element {
 const SeasonsAccordion: React.FC<{ season: Season; showId: number }> = ({ season, showId }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [showEpisodes, setShowEpisodes] = useState<boolean>(false);
