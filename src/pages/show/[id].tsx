@@ -8,6 +8,7 @@ import { GetServerSideProps } from 'next';
 
 interface ShowDetailsProps {
   showDetails: ShowDetails;
+  onRateShow: () => void;
 }
 
 export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.Element {
@@ -28,7 +29,10 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
 
   return (
     <Layout>
-      <ShowDetailView showDetailProps={showData} />;
+      <ShowDetailView
+        showDetail={showData}
+        onRateShow={(rate: number) => console.log('POST', rate)}
+      />
     </Layout>
   );
 }

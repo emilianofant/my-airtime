@@ -26,7 +26,7 @@ const SeasonsAccordion: React.FC<{ season: Season; showId: number }> = ({ season
   };
 
   return (
-    <article key={season.id} className="border-b shadow">
+    <article key={season.id} className="border-b shadow bg-white">
       <div
         className={`border-l-2 ${
           isCollapsed ? 'border-transparent' : 'bg-grey-lightest border-blue-500'

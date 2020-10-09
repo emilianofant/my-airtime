@@ -14,7 +14,6 @@ export default function ReviewsPage(showReviewsProps: ShowReviewsProps): JSX.Ele
 
   useEffect(() => {
     setReviews(showReviewsProps.showReviews);
-    console.log(reviews);
   }, [showReviewsProps.showReviews, reviews]);
 
   if (!reviews) {
