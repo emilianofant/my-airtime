@@ -32,6 +32,10 @@ export async function fetchShowReviews(showId: number): Promise<Season | null> {
   );
 }
 
+export async function fetchGetGuestSessionToken(): Promise<string | null> {
+  return makeRequest(`${BASE_URL}/authentication/guest_session/new?api_key=${API_KEY}`);
+}
+
 const makeRequest = async (url) => {
   const res = await fetch(url);
 
