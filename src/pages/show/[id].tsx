@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
-import { fetchShowDetail } from '../../lib/api';
+import { fetchShowDetail, postRateShow } from '../../lib/api';
 import { ShowDetails } from '../../lib/types';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShowDetailView } from '../../components/showDetailView/showDetailView';
 import Layout from '../../components/layout/layout';
 import { GetServerSideProps } from 'next';
+import SessionContext from '../../store/SessionContext';
 
 interface ShowDetailsProps {
   showDetails: ShowDetails;
@@ -14,6 +15,7 @@ interface ShowDetailsProps {
 export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.Element {
   const router = useRouter();
   const [showData, setShowData] = useState<ShowDetails | null>();
+  const sessionContext = useContext(SessionContext);
 
   useEffect(() => {
     setShowData(showDetailsProps.showDetails);
@@ -31,7 +33,9 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
     <Layout>
       <ShowDetailView
         showDetail={showData}
-        onRateShow={(rate: number) => console.log('POST', rate)}
+        onRateShow={(rate: string) =>
+          postRateShow(showData.id, rate, sessionContext.guest_session_id)
+        }
       />
     </Layout>
   );

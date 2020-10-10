@@ -4,6 +4,7 @@ import StarfullSVG from './starFull.svg';
 const RatingStars: React.FC<{ total: number; onChange }> = (props) => {
   const [score, setScore] = useState<number>(0);
   const [fullStars, setFullStars] = useState<JSX.Element[]>([]);
+  const [wasRated, setWasRated] = useState<boolean>(false);
 
   const configStars = useCallback(() => {
     const fst: JSX.Element[] = [];
@@ -14,6 +15,7 @@ const RatingStars: React.FC<{ total: number; onChange }> = (props) => {
   }, [score]);
 
   const handleStarClick = (index: number) => {
+    setWasRated(true);
     props.onChange(index + 1);
   };
 
@@ -22,7 +24,11 @@ const RatingStars: React.FC<{ total: number; onChange }> = (props) => {
     configStars();
   }, [configStars, props.total, score]);
 
-  return (
+  return wasRated ? (
+    <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">
+      Rate submitted!!
+    </span>
+  ) : (
     <div className="flex">
       {fullStars.map((i, index) => (
         <div
