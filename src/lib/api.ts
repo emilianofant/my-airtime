@@ -36,6 +36,34 @@ export async function fetchGetGuestSessionToken(): Promise<string | null> {
   return makeRequest(`${BASE_URL}/authentication/guest_session/new?api_key=${API_KEY}`);
 }
 
+export async function postRateShow(
+  showId: number,
+  rate: string,
+  guestSessionId: string,
+): Promise<boolean | null> {
+  const res = await fetch(
+    `${BASE_URL}/tv/${showId}/rating?api_key=${API_KEY}&guest_session_id=${guestSessionId}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ value: rate }),
+    },
+  );
+
+  if (res.status < 200 || res.status > 399) {
+    throw new Error('Error when fetching the API');
+  }
+
+  const json = await res.json();
+  if (json.errors) {
+    throw new Error('Failed to fetch API');
+  }
+
+  return json.success;
+}
+
 const makeRequest = async (url) => {
   const res = await fetch(url);
 
