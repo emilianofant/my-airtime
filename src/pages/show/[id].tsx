@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
-import { fetchShowDetail } from '../../lib/api';
-import { ShowDetails } from '../../lib/types';
-import { useEffect, useState } from 'react';
-import { ShowDetailView } from '../../components/showDetailView/showDetailView';
-import Layout from '../../components/layout/layout';
+import { fetchShowDetails, postRateShow } from '../../lib/api';
+import { IShowDetails } from '../../lib/types';
+import { useContext, useEffect, useState } from 'react';
+import { ShowDetails, Layout } from '../../components/';
 import { GetServerSideProps } from 'next';
+import SessionContext from '../../store/SessionContext';
 
 interface ShowDetailsProps {
-  showDetails: ShowDetails;
+  showDetails: IShowDetails;
+  onRateShow: () => void;
 }
 
 export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.Element {
   const router = useRouter();
-  const [showData, setShowData] = useState<ShowDetails | null>();
+  const [showData, setShowData] = useState<IShowDetails | null>();
+  const sessionContext = useContext(SessionContext);
 
   useEffect(() => {
     setShowData(showDetailsProps.showDetails);
@@ -28,14 +30,19 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
 
   return (
     <Layout>
-      <ShowDetailView showDetailProps={showData} />;
+      <ShowDetails
+        showDetail={showData}
+        onRateShow={(rate: string) =>
+          postRateShow(showData.id, rate, sessionContext.guest_session_id)
+        }
+      />
     </Layout>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
-  const showDetails = await fetchShowDetail(Number(id));
+  const showDetails = await fetchShowDetails(Number(id));
   return {
     props: {
       showDetails,

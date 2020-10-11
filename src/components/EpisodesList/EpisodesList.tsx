@@ -1,6 +1,6 @@
 import { Episode } from '../../lib/types';
 
-export const EpisodesList: React.FC<{ episodesList: Episode[] }> = ({ episodesList }) => {
+const EpisodesList: React.FC<{ episodesList: Episode[] }> = ({ episodesList }) => {
   return (
     <div className="">
       <div className="sm:flex sm:items-center px-2 py-4">
@@ -29,3 +29,5 @@ export const EpisodesList: React.FC<{ episodesList: Episode[] }> = ({ episodesLi
     </div>
   );
 };
+
+export default EpisodesList;
