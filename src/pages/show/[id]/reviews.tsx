@@ -8,8 +8,6 @@ const ReviewsPage: React.FC<{ showReviews: Review[] }> = ({ showReviews }) => {
   const [reviews, setReviews] = useState<Review[] | null>();
 
   useEffect(() => {
-    console.log(showReviews);
-
     setReviews(showReviews);
   }, [showReviews]);
 
