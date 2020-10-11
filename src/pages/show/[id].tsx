@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { fetchShowDetail, postRateShow } from '../../lib/api';
+import { fetchShowDetails, postRateShow } from '../../lib/api';
 import { IShowDetails } from '../../lib/types';
 import { useContext, useEffect, useState } from 'react';
 import { ShowDetails, Layout } from '../../components/';
@@ -42,7 +42,7 @@ export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
-  const showDetails = await fetchShowDetail(Number(id));
+  const showDetails = await fetchShowDetails(Number(id));
   return {
     props: {
       showDetails,

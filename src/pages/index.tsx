@@ -45,10 +45,11 @@ const IndexPage: React.FC = () => {
         />
       </div>
       <div className="container max-w-4xl mx-auto pb-10 flex flex-wrap">
-        {isLoading ? <h2>Loading</h2> : ''}
-        {data.map((item: Show) => (
-          <ShowCard show={item} key={item.id} />
-        ))}
+        {isLoading ? (
+          <h2>Loading</h2>
+        ) : (
+          data.map((item: Show) => <ShowCard show={item} key={item.id} />)
+        )}
       </div>
     </Layout>
   );

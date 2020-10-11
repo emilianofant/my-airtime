@@ -1,70 +1,51 @@
-import { Show, ShowDetails, Season } from '../lib/types';
+import { Show, IShowDetails, Season } from '../lib/types';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '3504a963b5eddb74923319a7e1dab880';
+const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
 
 export async function fetchPopularShows(): Promise<Show[] | null> {
-  return makeRequest(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`).then(
-    (res) => res.results,
-  );
+  return makeRequest(`${HOST_URL}/api/shows`).then((res) => res.results);
 }
 
-export async function fetchShowDetail(showId: number): Promise<ShowDetails | null> {
-  return makeRequest(`${BASE_URL}/tv/${showId}?api_key=${API_KEY}`);
+export async function fetchSearchShows(query: string): Promise<Show[] | null> {
+  return makeRequest(`${HOST_URL}/api/shows/search?search=${query}`).then((res) => res.results);
+}
+
+export async function fetchShowDetails(showId: number): Promise<IShowDetails | null> {
+  return makeRequest(`${HOST_URL}/api/shows/${showId}`);
 }
 
 export async function fetchSeasonDetails(
   seasonNumber: number,
   showId: number,
 ): Promise<Season | null> {
-  return makeRequest(`${BASE_URL}/tv/${showId}/season/${seasonNumber}?api_key=${API_KEY}`);
-}
-
-export async function fetchSearchShows(query: string): Promise<Show[] | null> {
-  return makeRequest(
-    `${BASE_URL}/search/tv?api_key=${API_KEY}&language=en-US&page=1&query=${query}`,
-  ).then((res) => res.results);
+  return makeRequest(`${HOST_URL}/api/shows/${showId}/season/${seasonNumber}`);
 }
 
 export async function fetchShowReviews(showId: number): Promise<Season | null> {
-  return makeRequest(`${BASE_URL}/tv/${showId}/reviews?api_key=${API_KEY}`).then(
-    (res) => res.results,
-  );
+  return makeRequest(`${HOST_URL}/api/shows/${showId}/reviews`).then((res) => res.results);
 }
 
 export async function fetchGetGuestSessionToken(): Promise<string | null> {
-  return makeRequest(`${BASE_URL}/authentication/guest_session/new?api_key=${API_KEY}`);
+  return makeRequest(`${HOST_URL}/api/session`);
 }
 
 export async function postRateShow(
   showId: number,
   rate: string,
   guestSessionId: string,
-): Promise<boolean | null> {
-  const res = await fetch(
-    `${BASE_URL}/tv/${showId}/rating?api_key=${API_KEY}&guest_session_id=${guestSessionId}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ value: rate }),
+): Promise<void> {
+  await fetch(`${HOST_URL}/api/shows/${showId}/rating?session=${guestSessionId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  );
-
-  if (res.status < 200 || res.status > 399) {
-    throw new Error('Error when fetching the API');
-  }
-
-  const json = await res.json();
-  if (json.errors) {
-    throw new Error('Failed to fetch API');
-  }
-
-  return json.success;
+    body: JSON.stringify({ value: rate }),
+  }).catch((e) => {
+    console.log('Error in the Rate request', e);
+  });
 }
 
-const makeRequest = async (url) => {
+const makeRequest = async (url: string) => {
   const res = await fetch(url);
 
   if (res.status !== 200) {
