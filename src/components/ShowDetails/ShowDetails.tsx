@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Season, IShowDetails } from '../../lib/types';
 import SeasonsAccordion from '../SeasonsAccordion/SeasonsAccordion';
-import styles from './showDetails.module.css';
+import styles from './ShowDetails.module.css';
 import RaitingStars from '../RatingStars/RatingStars';
 
 const ShowDetails: React.FC<{ showDetail: IShowDetails; onRateShow }> = (props) => {
