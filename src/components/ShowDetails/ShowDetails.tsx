@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { Season, ShowDetails } from '../../lib/types';
+import { Season, IShowDetails } from '../../lib/types';
 import SeasonsAccordion from '../SeasonsAccordion/SeasonsAccordion';
 import styles from './showDetails.module.css';
 import RaitingStars from '../RatingStars/RatingStars';
 
-// export default function ShowDetailView(showDetailProps: ShowDetails): JSX.Element {
-export const ShowDetailView: React.FC<{ showDetail: ShowDetails; onRateShow }> = (props) => {
-  const [showDetails, setShowDetails] = useState<ShowDetails>(null);
+const ShowDetails: React.FC<{ showDetail: IShowDetails; onRateShow }> = (props) => {
+  const [showDetails, setShowDetails] = useState<IShowDetails>(null);
   const total = 10;
 
   useEffect(() => {
@@ -68,3 +67,4 @@ export const ShowDetailView: React.FC<{ showDetail: ShowDetails; onRateShow }> =
     </section>
   );
 };
+export default ShowDetails;

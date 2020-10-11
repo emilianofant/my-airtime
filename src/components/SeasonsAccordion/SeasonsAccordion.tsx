@@ -1,8 +1,8 @@
 import { Episode, Season } from '../../lib/types';
 import { useState } from 'react';
-import AccordeonArrow from './AccordionArrow.svg';
 import { fetchSeasonDetails } from '../../lib/api';
-import { EpisodesList } from '../EpisodesList/EpisodesList';
+import AccordeonArrow from './AccordionArrow.svg';
+import EpisodesList from '../EpisodesList/EpisodesList';
 
 const SeasonsAccordion: React.FC<{ season: Season; showId: number }> = ({ season, showId }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);

@@ -24,7 +24,7 @@ export interface Season {
   season_number: number;
 }
 
-export interface ShowDetails {
+export interface IShowDetails {
   backdrop_path: string;
   created_by: any[];
   episode_run_time: number[];

@@ -2,19 +2,16 @@ import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { fetchShowReviews } from '../../../lib/api';
 import { Review } from '../../../lib/types';
-import Layout from '../../../components/layout/layout';
-import { ReviewCard } from '../../../components/ReviewCard/ReviewCard';
+import { Layout, ReviewCard } from '../../../components/';
 
-interface ShowReviewsProps {
-  showReviews: Review[];
-}
-
-export default function ReviewsPage(showReviewsProps: ShowReviewsProps): JSX.Element {
+const ReviewsPage: React.FC<{ showReviews: Review[] }> = ({ showReviews }) => {
   const [reviews, setReviews] = useState<Review[] | null>();
 
   useEffect(() => {
-    setReviews(showReviewsProps.showReviews);
-  }, [showReviewsProps.showReviews, reviews]);
+    console.log(showReviews);
+
+    setReviews(showReviews);
+  }, [showReviews]);
 
   if (!reviews) {
     return <h3>Loading</h3>;
@@ -29,7 +26,7 @@ export default function ReviewsPage(showReviewsProps: ShowReviewsProps): JSX.Ele
       </div>
     </Layout>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
@@ -40,3 +37,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   };
 };
+
+export default ReviewsPage;

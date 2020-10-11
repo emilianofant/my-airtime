@@ -1,6 +1,6 @@
 import { Review } from '../../lib/types';
 
-export const ReviewCard: React.FC<{ reviewCardProps: Review }> = ({ reviewCardProps }) => {
+const ReviewCard: React.FC<{ reviewCardProps: Review }> = ({ reviewCardProps }) => {
   return (
     <div className="max-w-xl py-4 px-8 bg-white shadow-lg rounded-lg my-20 mx-auto">
       <div>
@@ -15,3 +15,5 @@ export const ReviewCard: React.FC<{ reviewCardProps: Review }> = ({ reviewCardPr
     </div>
   );
 };
+
+export default ReviewCard;
