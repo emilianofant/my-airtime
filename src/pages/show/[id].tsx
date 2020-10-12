@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { fetchShowDetails, postRateShow } from '../../lib/api';
 import { IShowDetails } from '../../lib/types';
 import { useContext, useEffect, useState } from 'react';
@@ -12,17 +11,12 @@ interface ShowDetailsProps {
 }
 
 export default function ShowDetailPage(showDetailsProps: ShowDetailsProps): JSX.Element {
-  const router = useRouter();
   const [showData, setShowData] = useState<IShowDetails | null>();
   const sessionContext = useContext(SessionContext);
 
   useEffect(() => {
     setShowData(showDetailsProps.showDetails);
   }, [showDetailsProps.showDetails]);
-
-  if (router.isFallback) {
-    return <div className="container mx-auto mt-32 text-center">Loading...</div>;
-  }
 
   if (!showData) {
     return <h3>Loading</h3>;

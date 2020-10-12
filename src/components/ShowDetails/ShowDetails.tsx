@@ -33,9 +33,6 @@ const ShowDetails: React.FC<{ showDetail: IShowDetails; onRateShow }> = (props) 
             />
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <Link href={`/show/${showDetails.id}/reviews`}>
-              <a>Reviews</a>
-            </Link>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
               {showDetails.original_name}
             </h1>
@@ -45,22 +42,27 @@ const ShowDetails: React.FC<{ showDetail: IShowDetails; onRateShow }> = (props) 
             <div className="flex mb-4">
               <span className="flex items-center">
                 <RaitingStars total={total} onChange={onRatingChange} />
-                <span className="text-gray-600 ml-3">Rating</span>
+                <span className="text-gray-600 ml-3">Your rate</span>
               </span>
+            </div>
+            <div>
+              <Link href={`/show/${showDetails.id}/reviews`}>
+                <a className="hover:underline text-blue-500">Reviews</a>
+              </Link>
             </div>
             <p className="leading-relaxed">{showDetails.overview}</p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
               <div className="flex">
-                <span className="mr-4">Seasons: {showDetails.seasons.length}</span>
-                <span className="mr-4">Episodes: {showDetails.number_of_episodes}</span>
+                <span className="mr-4 italic">Seasons: {showDetails.seasons.length}</span>
+                <span className="mr-4 italic">Episodes: {showDetails.number_of_episodes}</span>
               </div>
               <div className="flex ml-6 items-center"></div>
             </div>
-            <div className="flex flex-col">
-              {showDetails.seasons.map((s: Season) => (
-                <SeasonsAccordion season={s} showId={showDetails.id} key={s.id} />
-              ))}
-            </div>
+          </div>
+          <div className="flex flex-col w-full">
+            {showDetails.seasons.map((s: Season) => (
+              <SeasonsAccordion season={s} showId={showDetails.id} key={s.id} />
+            ))}
           </div>
         </div>
       </div>

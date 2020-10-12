@@ -23,7 +23,7 @@ const Layout: React.FC = ({ children }) => {
           <Link href="/">
             <a className="block py-6 w-full text-center md:text-left md:w-auto text-gray-dark no-underline flex justify-center items-center">
               <TvSvg className={styles.icon} />
-              <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+              <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate ml-2 mt-2">
                 My Airtime!
               </h1>
             </a>
@@ -48,7 +48,7 @@ const Layout: React.FC = ({ children }) => {
           <div className="w-full md:w-1/2 text-center md:text-right"></div>
         </div>
       </nav>
-      <main className="mb-auto bg-gray-200">{children}</main>
+      <main className="mb-auto bg-gray-200 h-auto">{children}</main>
       <footer className="w-full bg-white px-6 border-t">
         <div className="container mx-auto max-w-4xl py-6 flex flex-wrap md:flex-no-wrap justify-between items-center text-sm">
           &copy;2020 My Airtime. All rights reserved.

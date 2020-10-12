@@ -34,7 +34,7 @@ export async function postRateShow(
   rate: string,
   guestSessionId: string,
 ): Promise<void> {
-  await fetch(`${HOST_URL}/api/shows/${showId}/rating?session=${guestSessionId}`, {
+  await fetch(`${HOST_URL}/api/shows/${showId}/rating?ssession=${guestSessionId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

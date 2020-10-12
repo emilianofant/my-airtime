@@ -3,8 +3,7 @@ import { fetchGetGuestSessionToken } from '../lib/api';
 import SessionContext from './SessionContext';
 
 const SessionProvider: React.FC = ({ children }) => {
-  // @todo: create Session type
-  const [sessionState, setSessionState] = useState('test');
+  const [sessionState, setSessionState] = useState<string>(null);
 
   const getGuestSession = async () => {
     const guestSession = await fetchGetGuestSessionToken();

@@ -26,13 +26,13 @@ const RatingStars: React.FC<{ total: number; onChange }> = ({ total, onChange })
 
   return wasRated ? (
     <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">
-      Rate submitted!!
+      Rate submitted, thanks!
     </span>
   ) : (
     <div className="flex">
       {fullStars.map((i, index) => (
         <div
-          className="w-5 h-5 text-red-500 hover:text-blue-500"
+          className="w-5 h-5 text-red-500 hover:text-blue-500 cursor-pointer"
           key={index}
           onClick={() => handleStarClick(index)}
         >
