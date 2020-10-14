@@ -39,11 +39,6 @@ const Layout: React.FC = ({ children }) => {
                 Home
               </a>
             </Link>
-            <Link href="/">
-              <a className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-light">
-                TV Shows
-              </a>
-            </Link>
           </div>
           <div className="w-full md:w-1/2 text-center md:text-right"></div>
         </div>

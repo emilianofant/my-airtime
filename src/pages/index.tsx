@@ -1,19 +1,22 @@
 import { GetStaticProps } from 'next';
 import React, { useState, useEffect } from 'react';
-import { Layout, ShowCard, SearchInput } from '../components';
+import { Layout, ShowCard, SearchInput, Pagination } from '../components';
 import { fetchPopularShows, fetchSearchShows } from '../lib/api';
-import { Show } from '../lib/types';
+import { Show, IPagination } from '../lib/types';
 
 const IndexPage: React.FC = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [paginationData, setPaginationData] = useState<IPagination>(null);
 
-  const getPopularShows = () => {
+  const getPopularShows = (page: number) => {
     setLoading(true);
-    fetchPopularShows()
+    fetchPopularShows(page)
       .then((dataJson) => {
         setLoading(false);
-        setData(dataJson);
+        setData(dataJson.results);
+        const { page, total_results, total_pages } = dataJson;
+        setPaginationData({ page, total_results, total_pages });
       })
       .catch((e) => console.log('Connection error', e));
   };
@@ -31,7 +34,7 @@ const IndexPage: React.FC = () => {
   };
 
   useEffect(() => {
-    getPopularShows();
+    getPopularShows(1);
   }, []);
 
   return (
@@ -47,10 +50,13 @@ const IndexPage: React.FC = () => {
       <div className="container max-w-4xl mx-auto pb-10 flex flex-wrap">
         {isLoading ? (
           <h2>Loading</h2>
-        ) : (
+        ) : data.length > 0 ? (
           data.map((item: Show) => <ShowCard show={item} key={item.id} />)
+        ) : (
+          <h2>No shows found.</h2>
         )}
       </div>
+      <Pagination data={paginationData} onPageChange={getPopularShows}></Pagination>
     </Layout>
   );
 };

@@ -2,8 +2,8 @@ import { Show, IShowDetails, Season } from '../lib/types';
 
 const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
 
-export async function fetchPopularShows(): Promise<Show[] | null> {
-  return makeRequest(`${HOST_URL}/api/shows`).then((res) => res.results);
+export async function fetchPopularShows(pageNumber: number): Promise<any | null> {
+  return makeRequest(`${HOST_URL}/api/shows?page=${pageNumber}`);
 }
 
 export async function fetchSearchShows(query: string): Promise<Show[] | null> {

@@ -6,10 +6,12 @@ import SearchInput from './SearchInput/SearchInput';
 import SeasonsAccordion from './SeasonsAccordion/SeasonsAccordion';
 import ShowCard from './ShowCard/ShowCard';
 import ShowDetails from './ShowDetails/ShowDetails';
+import Pagination from './Pagination/Pagination';
 
 export {
   EpisodesList,
   Layout,
+  Pagination,
   RatingStars,
   ReviewCard,
   SearchInput,
