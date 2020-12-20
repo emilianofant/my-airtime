@@ -1,5 +1,6 @@
 # my-airtime
 A funny and "Reactive" way to search for you favorite TV shows!
+`note: this was a React Test app ... nothing serious :P `
 
 ## Technologies/Tools used
 - React
